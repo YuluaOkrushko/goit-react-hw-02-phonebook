@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import styles from "./ContactForm.module.css"
+import InputMask from "react-input-mask";
 
 export default class ContactForm extends Component {
 
@@ -18,6 +19,10 @@ export default class ContactForm extends Component {
         this.props.onAddContact({
             name: this.state.name,
             number: this.state.number
+        })
+        this.setState({
+            name: "",
+            number: ""
         })
     }
 
@@ -40,13 +45,14 @@ export default class ContactForm extends Component {
         <label>
             <div className={styles.wrapper}>
                 <h3 className={styles.title_item}>Number</h3>
-                <input
+                <InputMask mask="999-99-99"
                 className={styles.input}
                 type="tel"
+                onChange={this.handleChange}
                 value={number}
                 name="number"
-                pattern="[0-9]{3}-[0-9]{2}-[0-9]{2}"
-                onChange={this.handleChange} />
+                placeholder="000-00-00"
+                pattern="[0-9]{3}-[0-9]{2}-[0-9]{2}"/>
             </div>
         </label>
         <div className={styles.button_wrapper}>
